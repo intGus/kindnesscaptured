@@ -8,3 +8,38 @@
   align-items: center;
   height: 100vh;
 }
+
+.general-button {
+  border: none;
+  border-color: transparent;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: #5d5151;
+}
+
+.general-button:hover {
+  background: #aca6a6;
+}
+.general-button:active {
+  background: #4c3131;
+}
+
+.button-add {
+  height: 2.5rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  font-size: 2rem;
+}
+
+.submit {
+  height: 2.5rem;
+  width: 5rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
