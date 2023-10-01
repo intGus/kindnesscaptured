@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Landing from './routes/landing'
+import logo from './logo.svg'
 import Admin from './routes/admin'
 import Admindashboard from './routes/admindashboard'
 import UserDashboard from './routes/userdashboard'
@@ -62,7 +63,7 @@ function App() {
         <div className='App'>
           <div className='App-header'>
             <div className='logo-wrapper'>
-              <img src='./logo.png' alt='logo' className='logo' />
+              <img src={logo} alt='logo' className='logo' />
             </div>
           </div>
           <Routes>
