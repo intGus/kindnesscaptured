@@ -2,11 +2,24 @@
   text-align: center;
 }
 
+.App-header {
+  height: 3rem;
+  width: 100vw;
+}
+.logo-wrapper {
+  height: 100%;
+  width: 15%;
+  margin: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: red;
+}
 .route-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 6vh;
 }
 
 .general-button {

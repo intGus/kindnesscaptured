@@ -1,0 +1,131 @@
+.accordion-card {
+  width: 100%;
+  height: 4rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-sizing: border-box;
+  color: black;
+  transition: 1s;
+}
+
+.accordion-order-card-header {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+}
+.accordion-card-active {
+  height: 30rem;
+  background: rgb(5, 5, 66);
+  color: white;
+}
+
+.accordion-card-content {
+  width: 100%;
+  height: 0rem;
+  margin-top: 0.5rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  transition: 1s;
+  gap: 1.5rem;
+}
+.accordion-card-active .accordion-card-content {
+  height: 30rem;
+}
+
+.accordion-card p {
+  font-size: 1rem;
+  max-width: 85%;
+  line-height: 1.5rem;
+}
+
+.accordion-order-card-button {
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 3rem;
+  border: none;
+  border-radius: 0;
+  font-size: 1rem;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  background: rgb(133, 130, 130);
+}
+
+.accordion-card-item-card {
+  position: relative;
+  height: 85%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion-card-photos {
+  height: 40%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.accordion-card-item-photo {
+  height: 70%;
+  aspect-ratio: 1/1;
+  background: rgb(133, 130, 130);
+}
+
+.accordion-card-item-details {
+  height: 40%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  box-sizing: border-box;
+  font-size: 0.5rem;
+  margin-top: 1rem;
+}
+.accordion-card-item-details p {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1rem;
+  margin-left: 1rem;
+}
+
+.item-button {
+  height: 2rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-button:active {
+  background: rgb(0, 153, 255);
+}
+
+.accept-item {
+  position: absolute;
+  bottom: 1rem;
+  right: 4rem;
+  background: rgb(76, 155, 76);
+}
+
+.denny-item {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgb(155, 76, 76);
+}

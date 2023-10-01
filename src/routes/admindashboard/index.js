@@ -1,40 +1,35 @@
-import React from 'react'
-
-const pending = [
-  {
-    orderId: 999,
-    orderStatus: 'pending',
-    intakeMethods: 'delivery',
-    dateRange: {
-      earliest: '2021-01-01',
-      latest: '2021-01-31',
-    },
-    deliveryDate: '2021-01-15',
-    clientInfo: {
-      firstName: 'John',
-      lastName: 'Doe',
-      email: '',
-      phoneNumber: '',
-    },
-    items: [
-      {
-        type: 'sofa',
-        itemStatus: 'aproved',
-        pickable: true,
-        pets: true,
-        smoke: false,
-        waterDamage: false,
-        otherDamage: true,
-        denialReason: '',
-        photos: ['/ashdba', '/asdasd', '/asdasd'],
-      },
-    ],
-  },
-]
-
+import React, { useState, useEffect } from 'react'
+import { pending as singleOrder } from '../../fakevariables.js'
+import AccordionCard from '../../components/accordioncard'
+import './styles.css'
 export default function Admindashboard() {
-  function getPending() {}
-  function getApproved() {}
+  const [toApprove, setToApprove] = useState()
+  const [approved, setApproved] = useState()
 
-  return <div>admindashboard</div>
+  const ordersArray = [singleOrder, singleOrder, singleOrder, singleOrder]
+  useEffect(() => {
+    function getPending() {
+      setToApprove(ordersArray)
+    }
+    getPending()
+    console.log('toApprove entered')
+  }, [])
+
+  function getApproved() {
+    setApproved(ordersArray)
+    console.log('approved entered')
+  }
+
+  return (
+    <div id='admin-dashboard-wrapper' class='route-wrapper'>
+      <h1> Items to be approved </h1>
+      <div class='dashboard-list-container'>
+        {toApprove &&
+          toApprove.map(item => {
+            const itemLength = item.items.length
+            return <AccordionCard props={item} />
+          })}
+      </div>
+    </div>
+  )
 }
