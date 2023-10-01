@@ -4,20 +4,21 @@
 
 .App-header {
   height: 3rem;
-  width: 50vw;
+  width: 100%;
+  position: relative;
 }
-.logo-wrapper {
-  height: 100%;
-  width: 15%;
-  margin: .5rem;
-  align-items: center;
-  justify-content: center;
+
+.logo {
+  height: 4rem;
+  width: auto;
+  position: absolute;
+  top: .5rem;
+  left: 1rem;
 }
 .route-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 6vh;
 }
 
 .general-button {

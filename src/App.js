@@ -9,6 +9,7 @@ import AddItem from './routes/additem'
 import OrderStatus from './routes/orderstatus'
 import NotFound from './routes/notfound'
 import React, { useState } from 'react'
+import ApprovedItems from './routes/approveditems'
 // import { pending } from './fakevariables'
 
 export const OrderContext = React.createContext()
@@ -62,15 +63,14 @@ function App() {
       <Router>
         <div className='App'>
           <div className='App-header'>
-            <div className='logo-wrapper'>
-              <img src={logo} alt='logo' className='logo' />
-            </div>
+            <img src={logo} alt='logo' className='logo' />
           </div>
           <Routes>
             <Route path='/orderstatus' element={<OrderStatus />} />
             <Route path='/userdashboard' element={<UserDashboard />} />
             <Route path='/admindashboard' element={<Admindashboard />} />
             <Route path='/admin' element={<Admin />} />
+            <Route path='/approveditems' element={<ApprovedItems />} />
             <Route path='*' element={<NotFound />} />
             {/* <Route path='/additem' element={<AddItem />} /> */}
             {/* <Route path='/' element={<Landing />} /> */}

@@ -25,17 +25,7 @@ export const pending =
           otherDamage: true,
           denialReason: '',
           photos: ['/ashdba', '/asdasd', '/asdasd'],
-        },
-        {
-          type: 'bed',
-          itemStatus: 'aproved',
-          pickable: true,
-          pets: true,
-          smoke: false,
-          waterDamage: false,
-          otherDamage: true,
-          denialReason: '',
-          photos: ['/ashdba', '/asdasd', '/asdasd'],
-        },
+          condition: "99% Good",
+        }
       ],
     }

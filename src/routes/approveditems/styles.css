@@ -1,0 +1,12 @@
+#admin-dashboard-wrapper {
+  height: 94vh;
+}
+
+.dashboard-order-card-counter {
+  font-size: .8rem;
+}
+
+.map-container {
+  height: 400px;
+  width: 100%;
+}
