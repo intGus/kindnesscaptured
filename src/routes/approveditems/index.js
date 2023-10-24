@@ -3,7 +3,7 @@ import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-load
 import './styles.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-mapboxgl.accessToken = 'mapboxKey;'
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
  
 function ApprovedItems() {
   const mapContainer = useRef(null);
@@ -15,6 +15,7 @@ function ApprovedItems() {
 
   useEffect(() => {
     // Make a GET request to fetch approved items from the API
+    console.log(mapboxgl.accessToken)
     fetch('https://kindapi.gusweb.workers.dev/api/approvedpickup')
       .then((response) => {
         if (!response.ok) {
