@@ -63,14 +63,13 @@ export default function AddItem() {
           const blob = new Blob([uint8Array], { type: 'image/jpeg' })
 
           // Send the data to your AWS Lambda API using PUT method
-          const response = await fetch('https://6w0m2blvwb.execute-api.us-east-1.amazonaws.com/prod/images', {
+          const response = await fetch('https://kindapi.gusweb.workers.dev/api/upload', {
             method: 'PUT',
             body: blob,
           })
 
           if (response.ok) {
             const responseData = await response.json()
-            const key = responseData.key
             setLocationURL(responseData.Location)
 
             // Make a second API call using the key as the request body
@@ -78,7 +77,7 @@ export default function AddItem() {
             const apiUrl = 'https://kc-predict.cognitiveservices.azure.com/customvision/v3.0/Prediction/b959432b-90f0-4495-a452-cdb2e0848175/classify/iterations/KC_v1/url'
 
             // Azure Custom Vision API Key
-            const apiKey = 'key'
+            const apiKey = process.env.REACT_APP_AZURE_API_KEY;
 
             // Data to send to the Azure Custom Vision API
             const requestData = {
