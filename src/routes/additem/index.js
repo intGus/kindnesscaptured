@@ -140,7 +140,7 @@ export default function AddItem() {
     // Access form data in the formData object
     console.log('Form data submitted:', createOrderData())
     const state = createOrderData()
-    navigate('/orderstatus', { state })
+    navigate(`/orderstatus?orderId=${state[0].orderId}`, { state })
     // Make API calls
     fetch ('https://kindapi.gusweb.workers.dev/api/additem', {
       method: 'POST',
@@ -165,9 +165,12 @@ export default function AddItem() {
   }
 
   const createOrderData = () => {
+    const timestamp = new Date().getTime(); // Get current timestamp
+    const random = Math.floor(Math.random() * 10000); // Generate a random number
+
     const orderData = [
       {
-        orderId: Math.floor(100000 + Math.random() * 900000),
+        orderId: `${timestamp}${random}`,
         orderStatus: 'pending',
         intakeMethods: formData.pickup ? 'pickup' : 'dropoff',
         dateRange: {

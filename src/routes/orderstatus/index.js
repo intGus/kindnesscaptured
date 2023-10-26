@@ -1,21 +1,42 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { pending as singleOrder } from '../../fakevariables.js'
 
 import './styles.css'
 export default function OrderStatus() {
   const [order, setOrder] = useState()
   const { state } = useLocation()
   useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
     function getOrderById() {
-      setOrder(state[0])
+      if (state) {
+        setOrder(state[0])
+      } else if (searchParams.get('orderId')) {
+        fetch(`https://kindapi.gusweb.workers.dev/api/list/${searchParams.get('orderId')}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json(); // Parse the JSON response
+        })
+        .then((data) => {
+          const parsedData = JSON.parse(data)
+          setOrder(parsedData[0])
+        })
+        .catch((error) => {
+          console.error('Error fetching approved items:', error);
+          setOrder({ orderId: 'Null', orderStatus: 'Null' })
+        });
+      } else {
+        setOrder({ orderId: 'Null', orderStatus: 'Null' })
+      }
+      
     }
     getOrderById()
-    console.log('toApprove entered')
+    console.log(state)
   }, [])
 
   useEffect(() => {
-    console.log('location', state[0])
+    // console.log('location', state[0])
   }, [state])
   return (
     <div id='order-status-wrapper' className='route-wrapper'>
