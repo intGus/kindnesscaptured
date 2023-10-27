@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import mapboxgl from 'mapbox-gl';
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './styles.css';
 import * as turf from '@turf/turf';
@@ -11,7 +11,6 @@ const RouteMap = () => {
   const location = useLocation();
   const coordinates = location.state && location.state.mapboxData
   const warehouse = [-80.148815, 26.122425];
-  // const coordinates = [[-80.174011, 26.132752], [-80.233685, 26.121055]];
 
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -34,41 +33,57 @@ const RouteMap = () => {
     const response = await query.json();
 
     const nothing = turf.featureCollection([]);
+    const warehouseLoc = turf.featureCollection([turf.point(warehouse)]);
 
     const routeGeoJSON = turf.featureCollection([
       turf.feature(response.trips[0].geometry),
     ]);
-    // Update the `route` source by getting the route source
-    // and setting the data equal to routeGeoJSON
 
     console.log(`hours: ${response.trips[0].duration/3600}`)
     console.log(`miles: ${response.trips[0].distance/1609}`)
 
-    // if the route already exists on the map, we'll reset it using setData
+    map.current.addLayer({
+      id: 'warehouse',
+      type: 'circle',
+      source: {
+      data: warehouseLoc,
+      type: 'geojson'
+      },
+      paint: {
+      'circle-radius': 20,
+      'circle-color': 'white',
+      'circle-stroke-color': '#3887be',
+      'circle-stroke-width': 3
+      }
+    });
+
     if (map.current.getSource('route')) {
       map.current.getSource('route').setData(routeGeoJSON);
     } else {
       map.current.addSource('route', {
         type: 'geojson',
-        data: nothing,
+        data: routeGeoJSON,
       });
-      map.current.addLayer(
-        {
-          id: 'routeline-active',
-          type: 'line',
-          source: 'route',
-          layout: {
-            'line-join': 'round',
-            'line-cap': 'round',
-          },
-          paint: {
-            'line-color': '#0E3464',
-            'line-width': ['interpolate', ['linear'], ['zoom'], 12, 3, 22, 12],
-          },
+    }
+
+    map.current.addLayer(
+      {
+        id: 'routeline-active',
+        type: 'line',
+        source: 'route',
+        layout: {
+          'line-join': 'round',
+          'line-cap': 'round',
         },
-        'waterway-label'
-      );
-      map.current.addLayer(
+        paint: {
+          'line-color': '#3887be',
+          'line-width': ['interpolate', ['linear'], ['zoom'], 12, 3, 22, 12],
+        },
+      },
+      'waterway-label'
+    );
+
+    map.current.addLayer(
         {
           id: 'routearrows',
           type: 'symbol',
@@ -104,7 +119,6 @@ const RouteMap = () => {
         },
         'waterway-label'
       );
-    }
   };
 
   const addMarker = () => {
