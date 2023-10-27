@@ -41,6 +41,9 @@ const RouteMap = () => {
     // Update the `route` source by getting the route source
     // and setting the data equal to routeGeoJSON
 
+    console.log(`hours: ${response.trips[0].duration/3600}`)
+    console.log(`miles: ${response.trips[0].distance/1609}`)
+
     // if the route already exists on the map, we'll reset it using setData
     if (map.current.getSource('route')) {
       map.current.getSource('route').setData(routeGeoJSON);

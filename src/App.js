@@ -10,6 +10,7 @@ import OrderStatus from './routes/orderstatus'
 import NotFound from './routes/notfound'
 import React, { useState } from 'react'
 import ApprovedItems from './routes/approveditems'
+import RouteMap from './routes/route'
 // import { pending } from './fakevariables'
 
 export const OrderContext = React.createContext()
@@ -72,7 +73,7 @@ function App() {
             <Route path='/admin' element={<Admin />} />
             <Route path='/approveditems' element={<ApprovedItems />} />
             <Route path='*' element={<NotFound />} />
-            {/* <Route path='/additem' element={<AddItem />} /> */}
+            <Route path='/route' element={<RouteMap />} />
             {/* <Route path='/' element={<Landing />} /> */}
             <Route path='/' element={<AddItem />} />
           </Routes>
